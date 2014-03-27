@@ -1,0 +1,767 @@
+// ## Bring in all Compass Helpers
+@import "../../components/Upbase/components/base";
+
+// ## Project Styles
+@import "project/experiments";
+@import "project/project";
+@import "project/hp";
+
+a 		{ 	text-decoration: none; color: inherit; }
+strong	{	font-weight: bold;	}
+em   	{	font-style: italic;	}
+i 		{  	font-style: normal; }
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	overflow: hidden;
+ 	font-family: proxima-nova, gotham;
+	background-color: #fff;
+}
+
+$site-bg: #f7f7f7;
+$nav-width: 550px; 
+$tan: #f0efe8;
+$ms-color: $tan;
+$spr-color: $tan;
+$logo-color: $tan;
+$ct-color: $tan;
+$accent: teal;
+$serif: 'Rokkitt', gotham;
+$sans: proxima-nova, gotham;
+
+.logo-mod {
+	left: -5px;
+	top: -5px;
+	margin-left: 0px;
+	width: 30px;
+	border: 0px;
+	position: absolute;
+}
+
+.nh-logo {
+	// width: 60px;
+}
+
+.site-width {
+	max-width: 1074px;
+	margin: 0 auto;
+	&.nav-width {
+		position: relative;
+		max-width: 1074px;
+	}
+}
+
+.article-site-width {
+	max-width: 1074px;
+	margin: 0 auto;
+}
+
+.l-thumbnails-mod {
+	@include mq(550px, 950px){
+		@include media-grid(2, 15px, '.thumbnail-mod');
+	}
+	@include mq(950px) {
+		@include media-grid(3, 15px, '.thumbnail-mod');
+	}
+}
+
+.thumbnail-mod {
+	margin-bottom: 15px;
+	position: relative;
+    display: block;
+}
+
+.project-thumbnail-mod {
+	@extend .article-site-width;
+	padding: 30px 15px 15px;
+	// @include mq(max, 1100px) {
+	// 	margin: 0;
+	// }
+	@include mq(1100px) {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		padding: 0;
+	}
+}
+
+.nav-link {
+	font-size: 13px;
+	font-family: $serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+	@include trans;
+	padding: 0 1px;
+
+	@include mq(max, $nav-width){
+		display: block;
+		text-align: center;
+		padding: 10px;		
+	}
+	@include mq($nav-width) {
+		line-height: 20px;
+		border-bottom: solid 1px rgba(0,0,0,0);
+
+		.active & {
+			// border-bottom: solid 1px rgba(0,0,0,1);
+			// &:hover {
+			// 	border-bottom: solid 1px $accent;
+			// }
+		}
+	}
+	&:hover {
+		color: $accent;
+	}
+
+}
+
+.nav-list-item {
+	@include mq(max, $nav-width){
+		border-bottom: solid 1px #ddd;
+		&:first-child {
+			border-top: solid 1px #ddd;
+		}
+	}
+	@include mq($nav-width) {
+		display: inline-block;
+		margin-right: 20px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.placeholder {
+	width: 100%;
+}
+
+.site-nav {
+	height: 50px;
+	margin-bottom: 45px;
+	background-color: #fff;
+	@include box-shadow(rgba(0, 0, 0, 0.2) 0 0px 3px);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	padding: 16px 20px;
+	.nav-bottom & {
+		position: absolute;
+		@include trans(.3s, margin-top);
+	}
+	.nav-bottom.mobile-nav-active & {
+		@include mq(max, $nav-width) {
+			margin-top: -112px;
+		}
+	}
+}
+
+.name {
+	// font-family: "tk-proxima-nova";
+	left: 35px;
+	position: absolute;
+	font-size: 19px;
+	top: 0;
+	// font-weight: 600;
+
+}
+
+.nav-trigger {
+	position: absolute;
+	right: 0px;
+	top: -4px;
+	// icon
+	@include svg(hamburger);
+	@include size(22px);
+	@include background-size(22px);
+	// style
+	@include input-default;
+	text-indent: -9999pc;
+	@include mq($nav-width) {
+		display: none;
+	}
+}
+
+.nav-list {
+	height: 0;
+	@include mq(max, $nav-width){
+		@include absolute(34px -20px n -20px);
+		background-color: #fff;
+		color: #333;
+		font-weight: 700;
+		@include trans;
+		overflow: hidden;
+	}
+	.mobile-nav-active &{
+		display: block;
+		height: 112px;
+
+	}
+	@include mq($nav-width){
+		display: block !important;
+		float: right;
+	}
+}
+
+a:hover {
+	// color: $accent;
+}
+
+
+
+.thumbnail-txt-mod {
+	@include absolute(15px 15px 15px 15px);
+	opacity: 0;
+	padding: 16% 25px;
+	color: black;
+	background: rgba(255,255,255,1);
+	@include trans;
+	display: block;
+	@include mq(550px){		
+		@include absolute(15px 15px 15px 30px);
+	}
+
+	.thumbnail-mod:hover & {
+		opacity: 1;
+	}
+	.touch & {
+		padding: 15px;
+		opacity: 1;
+		background: rgba(0,0,0,.9);
+		top: auto;
+		display: block;
+		color: white;
+		@include absolute(n 0 0 0);
+		@include mq(550px){		
+			@include absolute(n 0 0 15px);
+		}
+	}
+}
+
+.thumbnail-title {
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
+	margin-bottom: 25px;
+	font-size: 14px;
+	font-family: $serif;
+	letter-spacing: 1px;
+	font-weight: bold;
+	.touch & {
+		margin-bottom: 5px;
+	}
+}
+
+.thumbnail-info {
+	text-align: center;
+	font-size: 14px;
+	line-height: 1.5em;
+	&:before {
+		@include absolute(n n n 50%);
+		content: "\0020";
+		height: 1px;
+		width: 25px;
+		border-bottom: solid black 1px;
+		margin-left: -12.5px;
+		margin-top: -14px;
+		.touch & {
+			display: none;
+		}
+	}
+
+}
+
+.thumbnail-hgroup {
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate3d(-50%,-50%,0));
+	.touch & {
+		position: relative;
+		@include transform(translate3d(0,0,0));
+		top: 0;
+		left: 0;
+	}
+}
+
+.project-thumb {
+	// @include trans;
+}
+
+// project.html
+
+.about-info-mod,
+.project-info-mod {
+	margin: 0 0 15px;
+	position: relative;
+	display: block;
+	padding: 30px;
+	@include mq(1100px) {
+		margin: 0 0 30px;
+	}
+}
+
+.about-info-mod {
+	background-color: $site-bg;
+}
+.project-info-mod {
+	background-color: $tan;
+}
+
+.h1 {
+	margin: 0 20px;
+	font-family: $sans;
+	text-align: center;
+	pointer-events: none;
+	font-weight: 300;
+	margin-bottom: 20px;
+	color: black;
+	font-size: 30px;
+	@include mq(500px, 800px) {
+		font-size: 40px;
+	}
+	@include mq(800px) {
+		font-size: 55px;
+	}
+	// .mike-silva-top-img & {
+	// 	color: $ms-color;
+	// }
+	// .logo-top-img & {
+	// 	color: $logo-color;
+	// }
+	// .spr-top-img & {
+	// 	color: $spr-color;
+	// }
+	// .tape-top-img & {
+	// 	color: $spr-color;
+	// }
+	// .ct-top-img & {
+	// 	color: $ct-color;
+	// }
+}
+
+.h1-mod {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgba(50,40,30,0.5);
+}
+
+.overline {
+	font-family: $serif;
+	font-weight: 700;
+	color: black;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	&:after {
+		width: 60px;
+		border-bottom: solid black 1px;
+		height: 20px;
+		display: block;
+		margin: 0 auto;
+		opacity: 1;
+		@include content;
+	}
+
+}
+
+.project-txt-mod {
+	max-width: 680px;
+	margin: 0 auto;
+	position: relative;
+	> p {
+		font-size: 16px;
+		margin-bottom: 10px;
+		line-height: 1.5em;
+		@include mq(500px) {
+			font-size: 16px;
+		}
+	}
+}
+
+.action-link {
+	font-size: 13px;
+	line-height: 13px;
+	height: 28px;
+	font-family: $serif;
+	text-transform: uppercase;
+	font-weight: 700;
+
+	text-align: center;
+	padding: 7px 0px 8px;
+	border: solid rgb(68,68,68) 1px;
+	// font-size: 14px;
+	// text-transform: uppercase;
+	letter-spacing: 1px;
+	// font-weight: 700;
+	@include trans;
+	&:hover {
+		background-color: white;
+		color: black;
+		border-color: black;
+	}
+}
+
+.launch-site {
+	width: 140px;
+	margin: 30px auto 15px;
+	display: block;
+}
+
+
+.project-img {
+	width: 100%;
+}
+
+.project-img-mod {
+	position: relative;
+	margin-bottom: 15px; 
+	// &:first-child {
+	// 	margin-top: -70px;
+	// }
+	@include mq(1100px) {
+	margin-bottom: 30px; 
+		// margin: 0 -20px 10px;
+	}
+}
+
+.img-caption {
+	padding: 10px 0;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.figure-title {
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding-right: 5px;
+	font-size: 12px;
+}
+
+.txt-link {
+	color: $accent;
+}
+
+.site-wrapper {
+	z-index: 1;
+	// margin-bottom: 250px;
+	@include trans;
+	@include box-shadow(rgba(0, 0, 0, 0.2) 0 0px 3px);
+}
+
+.site-wrapper {
+	background-color: $site-bg;
+}
+
+
+.article-site-body,
+.site-body {
+	@include mq(max, $nav-width) {
+		.mobile-nav-active & {
+			// @include transform(translate3d(0, 114px, 0));
+		}		
+	}
+}
+
+.site-body {
+	@include mq(max, 1100px) {
+		padding: 15px 15px 0;
+	}
+	@include mq(1100px) {
+		padding: 60px 0px;
+	}
+}
+
+.article-site-body {
+	padding: 15px;
+	@include mq(1100px) {
+		padding: 35px 0px;
+	}
+}
+
+.hp-site-body {
+	padding-top: 65px;
+	@include mq(1100px){
+		padding: 115px 0px 60px;
+	}
+}
+
+// project images
+
+
+.project-top-img {
+	width: 100%;
+	position: relative;
+	margin-top: 50px;
+	// z-index: -1;
+	display: table;
+	background-color: $tan;
+	padding-bottom: 40%;
+	background-position: 50% 50px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	@include background-size(100%);
+	@include box-shadow(rgba(0, 0, 0, 0.2) 0 0px 2px inset);
+	@include mq(max, $nav-width) {
+		@include trans(.3s);
+	}
+	.mobile-nav-active & {
+		margin-top: 162px;
+		background-position: 50% 162px;
+	}
+	.hp-body & {
+		@include background-size(cover);
+		background-position: 50% 50%;
+		padding: 0;
+		margin: 50px 0 0;
+		@include mq(550px) {
+			margin: 0;
+		}
+	}
+}
+
+
+
+.mike-silva-top-img {
+	background-image: url(/../img/ms-top.jpg);
+}
+.modern-love-top-img {
+	background-image: url(/../img/ml-top.jpg);
+}
+.logo-top-img {
+	background-image: url(/../img/logo-top.jpg);
+}
+.spr-top-img {
+	background-image: url(/../img/spr-top.jpg);
+}
+.hp-top-img {
+	background-image: url(/../img/photo.jpg);
+	background-color: #222;
+}
+
+.tape-top-img {
+	background-image: url(/../img/tape-5.jpg);
+}
+
+.ct-top-img {
+	background-image: url(/../img/ct-top.jpg);
+}
+
+.fmc-top-img {
+	background-image: url(/../img/watkins.jpg);
+}
+.ffrw-top-img {
+	background-image: url(/../img/ffrw-top.jpg);
+}
+
+.ocw-top-img {
+	background-image: url(/../img/ocw-top.jpg);
+}
+
+.about-top-img {
+	background-image: url(/../img/placeholder.jpg);
+}
+
+.top-photo-credit {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: $tan;
+}
+
+// (radial, center center, 0, center center, 460, from(#1a82f7), to(#2F2727))
+
+// Logos
+
+.logo-1-img {
+	background-color: #db5025;
+}
+.logo-2-img {
+	background-color: #4a4542;
+}
+.logo-3-img {
+	// @include gradient(#b5c9b5, #AAB8AA);
+	background-color: #AAB8AA;
+}
+.logo-4-img {
+	// @include gradient(#492835,  #380C1E);
+	background-color: #380C1E;
+}
+.logo-5-img {
+	background-color: #B5D2C8;
+}
+// .logo-6-img {
+// 	background-color: #ddd;
+// }
+.logo-7-img {
+	background-color: #EBE3D9;
+}
+.logo-8-img {
+	@include background-image(linear-gradient(top, #88B9B4, #A9BBB4, #BEB692));
+	// @include gradient(#62B7B3, #379A99);
+}
+.logo-9-img {
+	background-color: #444;
+}
+
+// used on the coffee trike page
+.ct-logo-img {
+	background-color: #fff;
+}
+
+
+// about page
+
+$about-break: 900px;
+
+.about-pair {
+	// @include mq($about-break){
+		// @include pair(25%, 5%)
+	// }
+}
+
+.about-cir {
+	border-radius: 50%;
+	display: block;
+	width: 30%;
+	margin: 0 auto 35px;
+}
+
+.about-width {
+	display: table-cell;
+	vertical-align: middle;
+	background-color: #000;
+	opacity: .7;
+}
+
+.about-h1 {
+	text-align: center;
+	font-family: $serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: white;
+	font-size: 16px;
+	margin-bottom: 15px;
+	margin-top: 30px;
+}
+
+.about-txt {
+	font-size: 18px;
+	color: white;
+	line-height: 140%;
+	text-align: center;
+	padding: 0 30px 30px 30px;
+}
+
+.about-pair {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+
+// Footer
+
+.site-footer {
+	padding: 30px;
+	width:100%;
+	display: table;
+}
+
+.hp-footer {
+	background-color: #222;
+}
+
+.footer-width {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.footer-h3 {
+	font-size: 25px;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 25px;
+	font-weight: 300;
+}
+.footer-p {
+	font-size: 16px;
+	color: #fff;
+	text-align: center;
+	font-weight: 400;
+	max-width: 500px;
+	margin: 0 auto 25px;
+}
+
+.sm-list {
+	text-align: center;
+}
+
+.sm-item {
+	display: inline-block;
+	margin-right: 10px;
+	@include size(30px);
+	text-align: center;
+	position: relative;
+	&:last-child {
+		margin-right: 0;
+	}
+
+}
+
+.sm-link {
+	@include absolute(0 0 0 0);
+	color: #fff;
+	@include border-radius(15px);
+	@include trans;
+	&:hover {
+		background-color: $accent;
+	}
+	> .fa {
+		font-size: 20px;
+		text-align: center;
+		width: 30px;
+		line-height: 30px;
+	}
+	> .fa-envelope {
+		font-size: 18px;
+	}
+
+}
+
+
+
+// keyframes
+@include keyframes(fadein) {
+  0%   { opacity: 0; }
+  50%  { opacity: .5; }
+  100% { opacity: 1; }
+}
+
+.site-video {
+	position: absolute;
+	width: 69%;
+	margin: 0 auto;
+	left: 15.5%;
+	top: 9%;
+}
+
+.more-work {
+	font-family: $serif;
+	font-weight: 700;
+	color: black;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	@include mq(1100px) {
+		margin-bottom: 40px;
+	}
+
+}

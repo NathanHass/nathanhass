@@ -1,0 +1,118 @@
+.experiments .project-info-mod {
+	margin-top: 80px;
+}
+
+
+$trans-time: .4s;
+
+.devices-mod {
+	background-color: #C2F8FF;
+	padding: 50px 0;
+	@include trans;
+	&.light {
+		background-color: rgb(255, 234, 238);
+	}
+}
+
+.device-content-mod {
+	margin: 50px auto;
+	position: relative;
+	@include trans($trans-time);
+	.iphone & {
+		width: 35%;
+	}
+	.ipad & {
+		width: 55%;
+	}
+}
+
+.device-chrome {
+	@include trans($trans-time);
+	display: block;
+	position: relative;
+	width: 100%;
+	background-color: #000;
+	border: solid 2px #333;
+	.light & {
+		background-color: #fff;
+		border-color: #ccc;
+		&:before {
+			background-color: #666;
+		}
+	}
+	&:before {
+		@include trans($trans-time);
+		content: "\0020";
+		display: block;
+		border-radius: 50%;
+		background-color: #222;
+	}
+	.iphone & {
+		padding-bottom: 180%;
+		border-radius: 25px;
+		&:before {
+			margin: 9% auto 6%;
+			width: 4%;
+			padding-bottom: 4%;
+		}
+	}
+	.ipad & {
+		padding-bottom: 137%;
+		border-radius: 20px;
+		&:before {
+			margin: 4% auto 0;
+			width: 2%;
+			padding-bottom: 2.1%;
+		}
+	}
+}
+
+.device-screen-mod {
+	@include background-image(linear-gradient(top, #ffffff, #ffffff, #ffffff));
+	overflow: hidden;
+	@include trans($trans-time);
+	.light & {
+		@include background-image(linear-gradient(top, #88B9B4, #A9BBB4, #BEB692));
+	}
+	.iphone & {
+		@include absolute(0 4.25% 12% 4.25%);
+		margin-top: 20%;
+	}
+	.ipad & {
+		@include absolute(0 7% 7% 7%);
+		margin-top: 10%;
+	}
+}
+
+.device-extras {
+	@include trans($trans-time);
+	display: block;
+	background: #222;
+	border-radius: 50%;
+	@include box-shadow(0 0px 2.5px rgba(0, 0, 0, 0.1) inset);
+	.light & {
+		background-color: #f5f5f5;
+		&:after {
+			border-color: #aaa;
+		}
+	}
+	&:after {
+		@include psuedo(30% n n 30%);
+		@include size(35%);
+		border-radius: 4px;
+		border: solid 1px #444;
+		@include trans($trans-time);
+	}
+	.iphone & {
+		padding-bottom: 12%;
+		bottom: 3.3%;
+		@include absolute-center(12% n);
+	}
+	.ipad & {
+		@include absolute-center(6% n);
+		bottom: 1.4%;
+		padding-bottom: 6%;
+	}
+}
+
+// .device-btn 
